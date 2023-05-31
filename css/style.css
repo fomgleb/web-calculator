@@ -1,0 +1,13 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.calculator-container .operations {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5 1fr);
+}
+
+.calculator-container .operations button:last-child {
+    grid-column: 3 / 5;
+}
