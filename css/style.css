@@ -5,12 +5,23 @@ body {
 .calculator-container {
     display: inline-flex;
     flex-direction: column;
+    background-color: #F3F3F3;
+}
+
+.calculator-container .output {
+    text-align: right;
 }
 
 .calculator-container .operations {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5 1fr);
+    gap: 5px;
+}
+
+.calculator-container .operations button {
+    padding: 5px 10px;
+    font-weight: bold;
 }
 
 .calculator-container .operations button:last-child {
