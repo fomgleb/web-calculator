@@ -6,7 +6,7 @@ const calculate = expressionString => {
             const result = elements[i] === '*'
                 ? parseFloat(elements[i - 1]) * parseFloat(elements[i + 1])
                 : parseFloat(elements[i - 1]) / parseFloat(elements[i + 1])
-            elements.splice(i - 1, 3, result);
+            elements.splice(i - 1, 3, parseFloat(result.toFixed(16)));
             i--;
         }
     }
@@ -16,7 +16,7 @@ const calculate = expressionString => {
             const result = elements[i] === '+'
                 ? parseFloat(elements[i - 1]) + parseFloat(elements[i + 1])
                 : parseFloat(elements[i - 1]) - parseFloat(elements[i + 1])
-            elements.splice(i - 1, 3, result);
+            elements.splice(i - 1, 3, parseFloat(result.toFixed(16)));
             i--;
         }
     }
