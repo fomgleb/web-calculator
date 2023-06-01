@@ -56,11 +56,15 @@ const clearButtonClicked = () => {
 }
 
 const changeSignButtonClicked = () => {
-    lastInputtedSymbol = '±'
+    if (lastInputtedSymbol == '=')
+        historyFieldElement.textContent = ''
+    if (outputFieldElement.textContent == '0')
+        return
     if (outputFieldElement.textContent[0] != '-')
         outputFieldElement.textContent = `-${outputFieldElement.textContent}`
     else
         outputFieldElement.textContent = outputFieldElement.textContent.slice(1)
+    lastInputtedSymbol = '±'
 }
 
 const equalButtonClicked = () => {
