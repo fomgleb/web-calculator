@@ -68,6 +68,8 @@ const changeSignButtonClicked = () => {
 }
 
 const equalButtonClicked = () => {
+    if (lastInputtedSymbol == '=')
+        return
     historyFieldElement.textContent = `${historyFieldElement.textContent}${outputFieldElement.textContent}`
     outputFieldElement.textContent = calculate(historyFieldElement.textContent)
     historyFieldElement.textContent += ' ='
