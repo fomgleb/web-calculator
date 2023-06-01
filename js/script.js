@@ -45,6 +45,7 @@ const operatorButtonClicked = operator => {
         historyFieldElement.textContent = ''
     }
     historyFieldElement.textContent += `${outputFieldElement.textContent} ${operator} `
+    outputFieldElement.textContent = calculate(historyFieldElement.textContent.slice(0, -3))
     lastInputtedSymbol = operator
 }
 
