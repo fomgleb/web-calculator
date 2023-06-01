@@ -30,7 +30,7 @@ const outputFieldElement = calculatorContainerElement.querySelector('.output-fie
 
 let lastInputtedSymbol = ''
 
-const operandButtonClicked = operand => {
+const digitButtonClicked = operand => {
     if (outputFieldElement.textContent == '0' || ['+', '-', '*', '÷', '='].includes(lastInputtedSymbol))
         outputFieldElement.textContent = ''
     if (lastInputtedSymbol == '=')
