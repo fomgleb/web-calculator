@@ -1,15 +1,39 @@
 body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .calculator-container {
     display: inline-flex;
     flex-direction: column;
     background-color: #F3F3F3;
+    width: 300px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .calculator-container .output {
     text-align: right;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator-container .output .history-field {
+    margin-top: auto;
+}
+
+.calculator-container .output .output-field {
+    font-size: 30px;
+    height: 50px;
 }
 
 .calculator-container .operations {
@@ -22,6 +46,14 @@ body {
 .calculator-container .operations button {
     padding: 5px 10px;
     font-weight: bold;
+    background-color: white;
+    border: gainsboro solid 1px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 1px rgb(208, 208, 208);
+}
+
+.calculator-container .operations button:active {
+    box-shadow: none;
 }
 
 .calculator-container .operations button:last-child {
