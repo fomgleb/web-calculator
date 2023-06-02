@@ -1,6 +1,12 @@
 const calculate = expressionString => {
     let elements = expressionString.split(' ');
     console.log(elements);
+
+    for (let i = 0; i < elements.length; i++) {
+        if (elements[i].includes('!'))
+            elements[i] = Math.factorial(+elements[i].slice(0, -1))
+    }
+
     for (let i = 0; i < elements.length; i++) {
         if (elements[i] === '*' || elements[i] === '÷') {
             const result = elements[i] === '*'
@@ -31,7 +37,10 @@ const outputFieldElement = calculatorContainerElement.querySelector('.output-fie
 let lastInputtedSymbol = ''
 
 const digitButtonClicked = operand => {
-    if (outputFieldElement.textContent == '0' || ['+', '-', '*', '÷', '='].includes(lastInputtedSymbol))
+    if (lastInputtedSymbol == '!') {
+        historyFieldElement.textContent = ''
+        outputFieldElement.textContent = ''
+    } else if (outputFieldElement.textContent == '0' || ['+', '-', '*', '÷', '='].includes(lastInputtedSymbol))
         outputFieldElement.textContent = ''
     if (lastInputtedSymbol == '=')
         historyFieldElement.textContent = ''
@@ -48,7 +57,9 @@ const operatorButtonClicked = operator => {
         historyFieldElement.textContent = outputFieldElement.textContent
         historyFieldElement.textContent = ''
     }
-    historyFieldElement.textContent += `${outputFieldElement.textContent} ${operator} `
+    historyFieldElement.textContent += lastInputtedSymbol == '!'
+    ? ` ${operator} `
+    : `${outputFieldElement.textContent} ${operator} `
     outputFieldElement.textContent = calculate(historyFieldElement.textContent.slice(0, -3))
     lastInputtedSymbol = operator
 }
@@ -60,7 +71,7 @@ const clearButtonClicked = () => {
 }
 
 const changeSignButtonClicked = () => {
-    if (lastInputtedSymbol == '=')
+    if (['=', '!'].includes(lastInputtedSymbol))
         historyFieldElement.textContent = ''
     if (outputFieldElement.textContent == '0')
         return
@@ -84,8 +95,12 @@ const pointButtonClicked = () => {
 const equalButtonClicked = () => {
     if (lastInputtedSymbol == '=')
         return
-    historyFieldElement.textContent = `${historyFieldElement.textContent}${outputFieldElement.textContent}`
-    outputFieldElement.textContent = calculate(historyFieldElement.textContent)
+    if (lastInputtedSymbol == '!') {
+        outputFieldElement.textContent = calculate(historyFieldElement.textContent)
+    } else {
+        historyFieldElement.textContent += outputFieldElement.textContent
+        outputFieldElement.textContent = calculate(historyFieldElement.textContent)
+    }
     historyFieldElement.textContent += ' ='
     lastInputtedSymbol = '='
 }
@@ -95,4 +110,17 @@ const percentButtonClicked = () => {
         return
     outputFieldElement.textContent = calculate(historyFieldElement.textContent.slice(0, -3)) * outputFieldElement.textContent / 100.0
     lastInputtedSymbol = '%'
+}
+
+const factorialButtonClicked = () => {
+    if (lastInputtedSymbol == '!')
+        return
+    if (lastInputtedSymbol == '=') {
+        historyFieldElement.textContent = `${outputFieldElement.textContent}!`
+        outputFieldElement.textContent = calculate(historyFieldElement.textContent)
+    } else {
+        historyFieldElement.textContent += `${outputFieldElement.textContent}!`
+        outputFieldElement.textContent = calculate(historyFieldElement.textContent)
+    }
+    lastInputtedSymbol = '!'
 }

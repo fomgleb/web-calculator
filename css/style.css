@@ -58,7 +58,6 @@ h1 {
 }
 
 .calculator-container .operations button:last-child {
-    grid-column: 3 / 5;
     background-color: #006799;
     color: white;
 }
