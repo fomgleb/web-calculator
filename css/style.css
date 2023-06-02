@@ -46,7 +46,7 @@ h1 {
 .calculator-container .operations button {
     padding: 5px 10px;
     font-weight: bold;
-    background-color: white;
+    background-color: #F9F9F9;
     border: gainsboro solid 1px;
     border-radius: 5px;
     box-shadow: 0px 1px 1px rgb(208, 208, 208);
@@ -58,4 +58,6 @@ h1 {
 
 .calculator-container .operations button:last-child {
     grid-column: 3 / 5;
+    background-color: #006799;
+    color: white;
 }
