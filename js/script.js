@@ -72,12 +72,11 @@ const changeSignButtonClicked = () => {
 }
 
 const pointButtonClicked = () => {
-    if (outputFieldElement.textContent.includes('.'))
-        return
-    if (lastInputtedSymbol == '=') {
+    if (['+', '-', '*', '÷', '='].includes(lastInputtedSymbol)) {
         outputFieldElement.textContent = '0'
-        historyFieldElement.textContent = ''
-    }
+        if (lastInputtedSymbol == '=') historyFieldElement.textContent = ''
+    } else if (outputFieldElement.textContent.includes('.'))
+        return
     outputFieldElement.textContent += '.'
     lastInputtedSymbol = '.'
 }
