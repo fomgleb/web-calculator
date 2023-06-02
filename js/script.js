@@ -91,6 +91,8 @@ const equalButtonClicked = () => {
 }
 
 const percentButtonClicked = () => {
+    if (lastInputtedSymbol == '=')
+        return
     outputFieldElement.textContent = calculate(historyFieldElement.textContent.slice(0, -3)) * outputFieldElement.textContent / 100.0
     lastInputtedSymbol = '%'
 }
