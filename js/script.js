@@ -40,6 +40,10 @@ const digitButtonClicked = operand => {
 }
 
 const operatorButtonClicked = operator => {
+    if (['+', '-', '*', '÷'].includes(lastInputtedSymbol)) {
+        historyFieldElement.textContent = `${historyFieldElement.textContent.slice(0, -2)}${operator} `
+        return
+    }
     if (lastInputtedSymbol == '=') {
         historyFieldElement.textContent = outputFieldElement.textContent
         historyFieldElement.textContent = ''
