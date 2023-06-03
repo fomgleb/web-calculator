@@ -14,7 +14,7 @@ h1 {
     display: inline-flex;
     flex-direction: column;
     background-color: #F3F3F3;
-    width: 200px;
+    width: 250px;
     padding: 5px;
     margin-left: auto;
     margin-right: auto;
@@ -40,24 +40,46 @@ h1 {
 .calculator-container .operations {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5 1fr);
+    grid-template-rows: repeat(6, 1fr);
     gap: 5px;
 }
 
 .calculator-container .operations button {
     padding: 5px 10px;
-    font-weight: bold;
     background-color: #F9F9F9;
     border: gainsboro solid 1px;
     border-radius: 5px;
     box-shadow: 0px 1px 1px rgb(208, 208, 208);
+    font-style: italic;
+    font-size: 15px;
+}
+.calculator-container .operations button:hover { background-color: #f6f6f6; }
+.calculator-container .operations button:active {
+    background-color: #f3f3f3;
+    color: #6b6b6b;
+    box-shadow: none;
 }
 
-.calculator-container .operations button:active {
-    box-shadow: none;
+.calculator-container .operations .main {
+    font-style: normal;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+}
+.calculator-container .operations .main:hover { background-color: #fcfcfc; }
+.calculator-container .operations .main:active { background-color: #F9F9F9; }
+
+.calculator-container .operations .secondary {
+    font-style: normal;
+    font-size: 25px;
 }
 
 .calculator-container .operations button:last-child {
     background-color: #006799;
     color: white;
+}
+.calculator-container .operations button:last-child:hover { background-color: #006ea5; }
+.calculator-container .operations button:last-child:active {
+    background-color: #007cb9;
+    color: rgb(220, 220, 220);
 }
