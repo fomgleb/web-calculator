@@ -5,6 +5,8 @@ const calculate = expressionString => {
     for (let i = 0; i < elements.length; i++) {
         if (elements[i].includes('!'))
             elements[i] = Math.factorial(+elements[i].slice(0, -1))
+        else if (elements[i].includes('√'))
+            elements[i] = Math.sqrt(+elements[i].slice(2, -1))
     }
 
     for (let i = 0; i < elements.length; i++) {
@@ -64,7 +66,7 @@ const operatorButtonClicked = operator => {
         historyFieldElement.textContent = outputFieldElement.textContent
         historyFieldElement.textContent = ''
     }
-    historyFieldElement.textContent += lastInputtedSymbol == '!'
+    historyFieldElement.textContent += ['!', '√'].includes(lastInputtedSymbol)
     ? ` ${operator} `
     : `${outputFieldElement.textContent} ${operator} `
     outputFieldElement.textContent = calculate(historyFieldElement.textContent.slice(0, -3))
@@ -78,7 +80,7 @@ const clearButtonClicked = () => {
 }
 
 const changeSignButtonClicked = () => {
-    if (['=', '!'].includes(lastInputtedSymbol))
+    if (['=', '!', '√'].includes(lastInputtedSymbol))
         historyFieldElement.textContent = ''
     if (outputFieldElement.textContent == '0')
         return
@@ -102,7 +104,7 @@ const pointButtonClicked = () => {
 const equalButtonClicked = () => {
     if (lastInputtedSymbol == '=')
         return
-    if (lastInputtedSymbol == '!') {
+    if (['!', '√'].includes(lastInputtedSymbol)) {
         outputFieldElement.textContent = calculate(historyFieldElement.textContent)
     } else {
         historyFieldElement.textContent += outputFieldElement.textContent
@@ -130,4 +132,17 @@ const factorialButtonClicked = () => {
         outputFieldElement.textContent = calculate(historyFieldElement.textContent)
     }
     lastInputtedSymbol = '!'
+}
+
+const rootButtonClicked = () => {
+    if (lastInputtedSymbol == '√')
+        return
+    if (lastInputtedSymbol == '=') {
+        historyFieldElement.textContent = `√(${outputFieldElement.textContent})`
+        outputFieldElement.textContent = calculate(historyFieldElement.textContent)
+    } else {
+        historyFieldElement.textContent += `√(${outputFieldElement.textContent})`
+        outputFieldElement.textContent = calculate(historyFieldElement.textContent)
+    }
+    lastInputtedSymbol = '√'
 }
