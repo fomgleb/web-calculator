@@ -5,7 +5,10 @@ const calculate = expressionString => {
     for (let i = 0; i < elements.length; i++) {
         if (elements[i].includes('!'))
             elements[i] = Math.factorial(+elements[i].slice(0, -1))
-        else if (elements[i] === '^') {
+    }
+
+    for (let i = 0; i < elements.length; i++) {
+        if (elements[i] === '^') {
             elements.splice(i - 1, 3, parseFloat(Math.pow(elements[i -1], elements[i + 1]).toFixed(15)))
             i--
         }
