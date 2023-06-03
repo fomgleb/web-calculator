@@ -79,6 +79,14 @@ const clearButtonClicked = () => {
     lastInputtedSymbol = 'C'
 }
 
+const backspaceButtonClicked = () => {
+    if (outputFieldElement.textContent != '0')
+        outputFieldElement.textContent = outputFieldElement.textContent.slice(0, -1)
+    if (outputFieldElement.textContent == '')
+        outputFieldElement.textContent = '0'
+    lastInputtedSymbol = '⌫'
+}
+
 const changeSignButtonClicked = () => {
     if (['=', '!', '√'].includes(lastInputtedSymbol))
         historyFieldElement.textContent = ''
