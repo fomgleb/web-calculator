@@ -7,3 +7,16 @@ Math.factorial = number => {
     }
     return result;
 }
+
+Number.prototype.removeTrailingZeroes = function() {
+    let str = this.toString();
+    if (!str.includes('.')) return this
+    let index = str.length - 1;
+    while (str[index] === '0' && index > 0) {
+        index--;
+    }
+    if (str[index - 1] === '.') {
+        index--;
+    }
+    return Number(str.slice(0, index));
+}
