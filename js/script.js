@@ -11,7 +11,7 @@ const calculate = expressionString => {
 
     for (let i = 0; i < elements.length; i++) {
         if (elements[i] === '^') {
-            elements.splice(i - 1, 3, Math.pow(elements[i - 1], elements[i + 1]).removeTrailingZeroes())
+            elements.splice(i - 1, 3, Math.pow(elements[i - 1], elements[i + 1]))
             i--
         }
     }
@@ -21,7 +21,7 @@ const calculate = expressionString => {
             const result = elements[i] === '*'
                 ? parseFloat(elements[i - 1]) * parseFloat(elements[i + 1])
                 : parseFloat(elements[i - 1]) / parseFloat(elements[i + 1])
-            elements.splice(i - 1, 3, result.removeTrailingZeroes());
+            elements.splice(i - 1, 3, result);
             i--;
         }
     }
