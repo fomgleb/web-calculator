@@ -46,7 +46,7 @@ const outputFieldElement = calculatorContainerElement.querySelector('.output-fie
 let lastInputtedSymbol = ''
 
 const digitButtonClicked = operand => {
-    if (lastInputtedSymbol == '!') {
+    if (['!', '√'].includes(lastInputtedSymbol)) {
         historyFieldElement.textContent = ''
         outputFieldElement.textContent = ''
     } else if (outputFieldElement.textContent == '0' || ['+', '-', '*', '÷', '^', '='].includes(lastInputtedSymbol))
