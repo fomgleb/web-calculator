@@ -17,10 +17,13 @@
             <div class="output-field">0</div>
         </div>
         <div class="operations">
-            <button onclick="factorialButtonClicked()">x!</button>
-            <button onclick="clearButtonClicked()">C</button>
-            <button onclick="changeSignButtonClicked()">+/-</button>
             <button onclick="percentButtonClicked()">%</button>
+            <button></button>
+            <button onclick="clearButtonClicked()">C</button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button onclick="factorialButtonClicked()">x!</button>
             <button onclick="operatorButtonClicked(this.textContent)">÷</button>
             <button style="background-color: white;" onclick="digitButtonClicked(this.textContent)">7</button>
             <button style="background-color: white;"onclick="digitButtonClicked(this.textContent)">8</button>
@@ -29,11 +32,12 @@
             <button style="background-color: white;" onclick="digitButtonClicked(this.textContent)">4</button>
             <button style="background-color: white;" onclick="digitButtonClicked(this.textContent)">5</button>
             <button style="background-color: white;" onclick="digitButtonClicked(this.textContent)">6</button>
-            <button onclick="operatorButtonClicked(this.textContent)">+</button>
+            <button onclick="operatorButtonClicked(this.textContent)">-</button>
             <button style="background-color: white;" onclick="digitButtonClicked(this.textContent)">1</button>
             <button style="background-color: white;" onclick="digitButtonClicked(this.textContent)">2</button>
             <button style="background-color: white;" onclick="digitButtonClicked(this.textContent)">3</button>
-            <button onclick="operatorButtonClicked(this.textContent)">-</button>
+            <button onclick="operatorButtonClicked(this.textContent)">+</button>
+            <button style="background-color: white;" onclick="changeSignButtonClicked()">+/-</button>
             <button style="background-color: white;" onclick="digitButtonClicked(this.textContent)">0</button>
             <button style="background-color: white;" onclick="pointButtonClicked()">.</button>
             <button onclick="equalButtonClicked()">=</button>
