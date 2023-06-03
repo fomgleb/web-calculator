@@ -5,6 +5,10 @@ const calculate = expressionString => {
     for (let i = 0; i < elements.length; i++) {
         if (elements[i].includes('!'))
             elements[i] = Math.factorial(+elements[i].slice(0, -1))
+        else if (elements[i] === '^') {
+            elements.splice(i - 1, 3, parseFloat(Math.pow(elements[i -1], elements[i + 1]).toFixed(15)))
+            i--
+        }
     }
 
     for (let i = 0; i < elements.length; i++) {
@@ -40,7 +44,7 @@ const digitButtonClicked = operand => {
     if (lastInputtedSymbol == '!') {
         historyFieldElement.textContent = ''
         outputFieldElement.textContent = ''
-    } else if (outputFieldElement.textContent == '0' || ['+', '-', '*', '÷', '='].includes(lastInputtedSymbol))
+    } else if (outputFieldElement.textContent == '0' || ['+', '-', '*', '÷', '^', '='].includes(lastInputtedSymbol))
         outputFieldElement.textContent = ''
     if (lastInputtedSymbol == '=')
         historyFieldElement.textContent = ''
@@ -49,7 +53,7 @@ const digitButtonClicked = operand => {
 }
 
 const operatorButtonClicked = operator => {
-    if (['+', '-', '*', '÷'].includes(lastInputtedSymbol)) {
+    if (['+', '-', '*', '÷', '^'].includes(lastInputtedSymbol)) {
         historyFieldElement.textContent = `${historyFieldElement.textContent.slice(0, -2)}${operator} `
         return
     }
@@ -83,7 +87,7 @@ const changeSignButtonClicked = () => {
 }
 
 const pointButtonClicked = () => {
-    if (['+', '-', '*', '÷', '='].includes(lastInputtedSymbol)) {
+    if (['+', '-', '*', '÷', '=', '^'].includes(lastInputtedSymbol)) {
         outputFieldElement.textContent = '0'
         if (lastInputtedSymbol == '=') historyFieldElement.textContent = ''
     } else if (outputFieldElement.textContent.includes('.'))
