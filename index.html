@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/customMathFunctions.js" defer></script>
-    <script src="js/script.js" defer></script>
 </head>
+
 <body>
     <h1>Calculator</h1>
     <div class="calculator-container">
@@ -17,31 +17,38 @@
             <div class="output-field">0</div>
         </div>
         <div class="operations">
-            <button onclick="percentButtonClicked()">%</button>
+            <button onclick="vm.percentButtonClicked()">%</button>
             <button></button>
-            <button onclick="clearButtonClicked()">C</button>
-            <button onclick="backspaceButtonClicked()">⌫</button>
-            <button onclick="rootButtonClicked()">√</button>
-            <button onclick="operatorButtonClicked('^')">x<sup>n</sup></button>
-            <button onclick="factorialButtonClicked()">x!</button>
-            <button class="secondary" onclick="operatorButtonClicked(this.textContent)">÷</button>
-            <button class="main" onclick="digitButtonClicked(this.textContent)">7</button>
-            <button class="main" onclick="digitButtonClicked(this.textContent)">8</button>
-            <button class="main" onclick="digitButtonClicked(this.textContent)">9</button>
-            <button class="secondary" onclick="operatorButtonClicked(this.textContent)">*</button>
-            <button class="main" onclick="digitButtonClicked(this.textContent)">4</button>
-            <button class="main" onclick="digitButtonClicked(this.textContent)">5</button>
-            <button class="main" onclick="digitButtonClicked(this.textContent)">6</button>
-            <button class="secondary" onclick="operatorButtonClicked(this.textContent)">-</button>
-            <button class="main" onclick="digitButtonClicked(this.textContent)">1</button>
-            <button class="main" onclick="digitButtonClicked(this.textContent)">2</button>
-            <button class="main" onclick="digitButtonClicked(this.textContent)">3</button>
-            <button class="secondary" onclick="operatorButtonClicked(this.textContent)">+</button>
-            <button class="main" onclick="changeSignButtonClicked()">+/-</button>
-            <button class="main" onclick="digitButtonClicked(this.textContent)">0</button>
-            <button class="main" onclick="pointButtonClicked()">.</button>
-            <button class="secondary" onclick="equalButtonClicked()">=</button>
+            <button onclick="vm.clearButtonClicked()">C</button>
+            <button onclick="vm.backspaceButtonClicked()">⌫</button>
+            <button onclick="vm.rootButtonClicked()">√</button>
+            <button onclick="vm.operatorButtonClicked('^')">x<sup>n</sup></button>
+            <button onclick="vm.factorialButtonClicked()">x!</button>
+            <button class="secondary" onclick="vm.operatorButtonClicked(this.textContent)">÷</button>
+            <button class="main" onclick="vm.digitButtonClicked(this.textContent)">7</button>
+            <button class="main" onclick="vm.digitButtonClicked(this.textContent)">8</button>
+            <button class="main" onclick="vm.digitButtonClicked(this.textContent)">9</button>
+            <button class="secondary" onclick="vm.operatorButtonClicked(this.textContent)">*</button>
+            <button class="main" onclick="vm.digitButtonClicked(this.textContent)">4</button>
+            <button class="main" onclick="vm.digitButtonClicked(this.textContent)">5</button>
+            <button class="main" onclick="vm.digitButtonClicked(this.textContent)">6</button>
+            <button class="secondary" onclick="vm.operatorButtonClicked(this.textContent)">-</button>
+            <button class="main" onclick="vm.digitButtonClicked(this.textContent)">1</button>
+            <button class="main" onclick="vm.digitButtonClicked(this.textContent)">2</button>
+            <button class="main" onclick="vm.digitButtonClicked(this.textContent)">3</button>
+            <button class="secondary" onclick="vm.operatorButtonClicked(this.textContent)">+</button>
+            <button class="main" onclick="vm.changeSignButtonClicked()">+/-</button>
+            <button class="main" onclick="vm.digitButtonClicked(this.textContent)">0</button>
+            <button class="main" onclick="vm.pointButtonClicked()">.</button>
+            <button class="secondary" onclick="vm.equalButtonClicked()">=</button>
         </div>
     </div>
+    <script src="js/customMathFunctions.js"></script>
+    <script src="js/calculatorModel.js"></script>
+    <script src="js/calculatorViewModel.js"></script>
+    <script>
+        const vm = new CalculatorViewModel()
+    </script>
 </body>
+
 </html>
