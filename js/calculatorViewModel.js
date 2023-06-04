@@ -12,67 +12,73 @@ class CalculatorViewModel {
     get #lastInputtedSymbol() { return this.#_lastInputtedSymbol }
     set #lastInputtedSymbol(value) { this.#_lastInputtedSymbol = value }
 
+    get #history() { return this.#historyFieldElement.textContent }
+    set #history(value) { this.#historyFieldElement.textContent = value }
+
+    get #output() { return this.#_outputFieldElement.textContent }
+    set #output(value) { this.#outputFieldElement.textContent = value }
+
     digitButtonClicked(operand) {
         if (['!', '√'].includes(this.#lastInputtedSymbol)) {
-            this.#historyFieldElement.textContent = ''
-            this.#outputFieldElement.textContent = ''
-        } else if (this.#outputFieldElement.textContent == '0' || ['+', '-', '*', '÷', '^', '='].includes(this.#lastInputtedSymbol))
-            this.#outputFieldElement.textContent = ''
+            this.#history = ''
+            this.#output = ''
+        } else if (this.#output == '0' || ['+', '-', '*', '÷', '^', '='].includes(this.#lastInputtedSymbol))
+            this.#output = ''
         if (this.#lastInputtedSymbol == '=')
-            this.#historyFieldElement.textContent = ''
-        this.#outputFieldElement.textContent += operand
+            this.#history = ''
+        this.#output += operand
         this.#lastInputtedSymbol = operand
     }
 
     operatorButtonClicked(operator) {
         if (['+', '-', '*', '÷', '^'].includes(this.#lastInputtedSymbol)) {
-            this.#historyFieldElement.textContent = `${this.#historyFieldElement.textContent.slice(0, -2)}${operator} `
+            this.#history = `${this.#history.slice(0, -2)}${operator} `
             return
         }
         if (this.#lastInputtedSymbol == '=') {
-            this.#historyFieldElement.textContent = this.#outputFieldElement.textContent
-            this.#historyFieldElement.textContent = ''
+            this.#history = this.#output
+            this.#history = ''
         }
-        this.#historyFieldElement.textContent += ['!', '√'].includes(this.#lastInputtedSymbol)
+        this.#history += ['!', '√'].includes(this.#lastInputtedSymbol)
         ? ` ${operator} `
-        : `${this.#outputFieldElement.textContent} ${operator} `
-        this.#outputFieldElement.textContent = calculate(this.#historyFieldElement.textContent.slice(0, -3))
+        : `${this.#output} ${operator} `
+        this.#output = calculate(this.#history.slice(0, -3))
         this.#lastInputtedSymbol = operator
     }
 
     clearButtonClicked() {
-        this.#historyFieldElement.textContent = ''
-        this.#outputFieldElement.textContent = '0'
+        this.#history = ''
+        this.#output = '0'
         this.#lastInputtedSymbol = 'C'
     }
 
     backspaceButtonClicked() {
-        if (this.#outputFieldElement.textContent != '0')
-            this.#outputFieldElement.textContent = this.#outputFieldElement.textContent.slice(0, -1)
-        if (this.#outputFieldElement.textContent == '')
-            this.#outputFieldElement.textContent = '0'
+        if (this.#output != '0')
+            this.#output = this.#output.slice(0, -1)
+        if (this.#output == '')
+            this.#output = '0'
         this.#lastInputtedSymbol = '⌫'
     }
 
     changeSignButtonClicked() {
         if (['=', '!', '√'].includes(this.#lastInputtedSymbol))
-            this.#historyFieldElement.textContent = ''
-        if (this.#outputFieldElement.textContent == '0')
+            this.#history = ''
+        if (this.#output == '0')
             return
-        if (this.#outputFieldElement.textContent[0] != '-')
-            this.#outputFieldElement.textContent = `-${this.#outputFieldElement.textContent}`
+        if (this.#output[0] != '-')
+            this.#output = `-${this.#output}`
         else
-            this.#outputFieldElement.textContent = this.#outputFieldElement.textContent.slice(1)
+            this.#output = this.#output.slice(1)
         this.#lastInputtedSymbol = '±'
     }
 
     pointButtonClicked() {
         if (['+', '-', '*', '÷', '=', '^'].includes(this.#lastInputtedSymbol)) {
-            this.#outputFieldElement.textContent = '0'
-            if (this.#lastInputtedSymbol == '=') this.#historyFieldElement.textContent = ''
-        } else if (this.#outputFieldElement.textContent.includes('.'))
+            this.#output = '0'
+            if (this.#lastInputtedSymbol == '=') this.#history = ''
+        } else if (this.#output.includes('.'))
             return
-        this.#outputFieldElement.textContent += '.'
+        this.#output += '.'
         this.#lastInputtedSymbol = '.'
     }
 
@@ -80,19 +86,19 @@ class CalculatorViewModel {
         if (this.#lastInputtedSymbol == '=')
             return
         if (['!', '√'].includes(this.#lastInputtedSymbol)) {
-            this.#outputFieldElement.textContent = calculate(this.#historyFieldElement.textContent)
+            this.#output = calculate(this.#history)
         } else {
-            this.#historyFieldElement.textContent += this.#outputFieldElement.textContent
-            this.#outputFieldElement.textContent = calculate(this.#historyFieldElement.textContent)
+            this.#history += this.#output
+            this.#output = calculate(this.#history)
         }
-        this.#historyFieldElement.textContent += ' ='
+        this.#history += ' ='
         this.#lastInputtedSymbol = '='
     }
 
     percentButtonClicked() {
         if (this.#lastInputtedSymbol == '=')
             return
-        this.#outputFieldElement.textContent = calculate(this.#historyFieldElement.textContent.slice(0, -3)) * this.#outputFieldElement.textContent / 100.0
+        this.#output = calculate(this.#history.slice(0, -3)) * this.#output / 100.0
         this.#lastInputtedSymbol = '%'
     }
 
@@ -100,11 +106,11 @@ class CalculatorViewModel {
         if (this.#lastInputtedSymbol == '!')
             return
         if (this.#lastInputtedSymbol == '=') {
-            this.#historyFieldElement.textContent = `${this.#outputFieldElement.textContent}!`
-            this.#outputFieldElement.textContent = calculate(this.#historyFieldElement.textContent)
+            this.#history = `${this.#output}!`
+            this.#output = calculate(this.#history)
         } else {
-            this.#historyFieldElement.textContent += `${this.#outputFieldElement.textContent}!`
-            this.#outputFieldElement.textContent = calculate(this.#historyFieldElement.textContent)
+            this.#history += `${this.#output}!`
+            this.#output = calculate(this.#history)
         }
         this.#lastInputtedSymbol = '!'
     }
@@ -113,11 +119,11 @@ class CalculatorViewModel {
         if (this.#lastInputtedSymbol == '√')
             return
         if (this.#lastInputtedSymbol == '=') {
-            this.#historyFieldElement.textContent = `√(${this.#outputFieldElement.textContent})`
-            this.#outputFieldElement.textContent = calculate(this.#historyFieldElement.textContent)
+            this.#history = `√(${this.#output})`
+            this.#output = calculate(this.#history)
         } else {
-            this.#historyFieldElement.textContent += `√(${this.#outputFieldElement.textContent})`
-            this.#outputFieldElement.textContent = calculate(this.#historyFieldElement.textContent)
+            this.#history += `√(${this.#output})`
+            this.#output = calculate(this.#history)
         }
         this.#lastInputtedSymbol = '√'
     }
