@@ -18,7 +18,7 @@ class CalculatorViewModel {
     get #output() { return this.#_outputFieldElement.textContent }
     set #output(value) { this.#outputFieldElement.textContent = value }
 
-    digitButtonClicked(operand) {
+    digitButtonClicked(digit) {
         if (['!', '√'].includes(this.#lastInputtedSymbol)) {
             this.#history = ''
             this.#output = ''
@@ -26,8 +26,8 @@ class CalculatorViewModel {
             this.#output = ''
         if (this.#lastInputtedSymbol == '=')
             this.#history = ''
-        this.#output += operand
-        this.#lastInputtedSymbol = operand
+        this.#output += digit
+        this.#lastInputtedSymbol = digit
     }
 
     operatorButtonClicked(operator) {
